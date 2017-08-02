@@ -74,7 +74,7 @@ Installation is pretty simple: point your browser to *****.
 
 ### approach taken
 
-8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/flow.jpg) I think I'll need ()
+8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/newFlow.jpg) I think I'll need ()
 
 7/31/17: I'm using Google CSE (Custom Search Engine) to get images of the different breeds, and may use it to get some starting breed info. Breed info will definitely be augmented with non-API sources as there is no sheep-breed-info-for-spinners API available. I think that's a shame, by the way. 
 
