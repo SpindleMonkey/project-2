@@ -2,7 +2,7 @@
 
 
 ### overview
-This ia a spinning stash inventory app targetd for mobile use. Initially, it will document what you have with some basic descriptors (& notes). Future versions would include: detailed stash info, ability to add breeds and fiber sources, search)
+This ia a spinning stash inventory app targeted for mobile use. Initially, it will document what you have with some basic descriptors (& notes). Future versions would include: detailed stash info, ability to add new breeds and fiber sources, search)
   
 I'm always buying duplicates and/or forgetting what I already have. I need a list of all my stuff that I can access when at fiber festivals/shops/online, and I'm pretty sure I'm not the only one with a little stash problem.
 
@@ -11,7 +11,7 @@ Stretch goals will make this inventory searchable as well as a sort of journal o
 Spinners are pretty tech-y these days, but the app needs to be very intuitive and MUST be mobile friendly. I want my app to be functional, fast, clean, logical, and extensible.
 
 Phase 1:
-* List of fibers in stash with breed info (one list per user)
+* List of fibers in your stash with breed info (one list per user)
 * Support for multiple users with authenticated sign in
 * Shared breed info
 * Images of breeds
@@ -24,6 +24,7 @@ Fuure upgrades to the app:
 * Phase 4: expand stash info
 * Phase 5: advanced search
 * Phase 6: wish lists (breeds, blends, sources, whatever)
+* Phase 7: iOS thumbprint ID?
 
 Inspirations:
 * Oklahoma State University's [sheep breed list](http://www.ansi.okstate.edu/breeds/sheep/)
@@ -43,23 +44,41 @@ Installation is pretty simple: point your browser to *****.
 ---
 
 ### technologies used
-* HTML
-* CSS
-* JavaScript
-* DOM manipulation using vanilla JS or jQuery?????????
-* Node.js
-* EJS
-* Ajax
-* Mongo
-* Mongoose
-* Heroku
+* Front End
+  * HTML
+  * CSS
+  * JavaScript
+  * DOM manipulation using jQuery
+  * Bootstrap
+
+* Not Front, Not Back
+  * Ajax
+  * express
+
+* Back End
+  * Node.js
+  * BCrypt
+  * Passport
+  * request????
+  * EJS
+  * Mongo
+  * Mongoose
+  * mocha
+  * chai
+
+* Hosting
+  * Heroku
 
 
 ---
 
 ### approach taken
 
-7/27/17: Starting design with some rough wireframes showing basic pages and flows: sign in, filter, index, show, add, delete. Looking to implement at least 3 collections: user, breed, and stash. The breed collection will be populated via data/images returned from the Google CSE API, as well as user inputs in some later phase.
+8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/flow.jpg) I think I'll need ()
+
+7/31/17: I'm using Google CSE (Custom Search Engine) to get images of the different breeds, and may use it to get some starting breed info. Breed info will definitely be augmented with non-API sources as there is no sheep-breed-info-for-spinners API available. I think that's a shame, by the way. 
+
+7/27/17: Starting design with some rough [wireframes](assets/wireframes.jpg) showing basic pages and flows: sign in, filter, index, show, add, delete. Looking to implement at least 3 collections: user, breed, and stash. The breed collection will be populated via data/images returned from the Google CSE API, as well as user inputs in some later phase.
 
 
 ---
