@@ -13,18 +13,17 @@ Spinners are pretty tech-y these days, but the app needs to be very intuitive an
 Phase 1:
 * List of fibers in your stash with breed info (one list per user)
 * Support for multiple users with authenticated sign in
-* Shared breed info
-* Images of breeds
+* Breed info (shared among all users)
 * Ability to add/update/delete stash items
 * Static pool of breeds (can be updated throughout project 2 by me, but users won't be able to add new breeds)
 
 Fuure upgrades to the app:
-* Phase 2: simple search (provide some canned searches)
+* Phase 2: add filters (breeds or fleeces or processed fiber); simple search (provide some canned searches)
 * Phase 3: ability to add new breeds
 * Phase 4: expand stash info
 * Phase 5: advanced search
 * Phase 6: wish lists (breeds, blends, sources, whatever)
-* Phase 7: iOS thumbprint ID?
+* Phase 7: add fun/interesting facts about your inventory (e.g., total lbs of fiber, total number/lbs of fleeces)
 
 Inspirations:
 * Oklahoma State University's [sheep breed list](http://www.ansi.okstate.edu/breeds/sheep/)
@@ -39,6 +38,11 @@ Inspirations:
 
 ### installation instructions
 Installation is pretty simple: point your browser to *****.
+
+
+---
+
+[Project user stories](https://trello.com/b/FoliqEDp/stashy)
 
 
 ---
@@ -59,7 +63,6 @@ Installation is pretty simple: point your browser to *****.
   * Node.js
   * BCrypt
   * Passport
-  * request????
   * EJS
   * Mongo
   * Mongoose
@@ -74,7 +77,7 @@ Installation is pretty simple: point your browser to *****.
 
 ### approach taken
 
-8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/newFlow.jpg) I think I'll need ()
+8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/newFlow.jpg) I think I'll need.
 
 7/31/17: I'm using Google CSE (Custom Search Engine) to get images of the different breeds, and may use it to get some starting breed info. Breed info will definitely be augmented with non-API sources as there is no sheep-breed-info-for-spinners API available. I think that's a shame, by the way. 
 
