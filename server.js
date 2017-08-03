@@ -1,33 +1,17 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const passport = require('passport');
 const flash = require('connect-flash');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
 
 
-
-// from the passport classwork
-    // "bcrypt-nodejs": "latest",
-    // "body-parser": "~1.0.0",
-    // "connect-flash": "~0.1.1",
-    // "cookie-parser": "~1.0.0",
-    // "ejs": "~0.8.5",
-    // "express": "~4.0.0",
-    // "express-ejs-layouts": "^1.1.0",
-    // "express-session": "~1.0.0",
-    // "hbs": "^4.0.0",
-    // "method-override": "~1.0.0",
-    // "mongoose": "^4.7.2",
-    // "morgan": "~1.0.0",
-    // "passport": "~0.1.17",
-    // "passport-facebook": "~1.0.2",
-    // "passport-google-oauth": "~0.1.5",
-    // "passport-local": "~0.1.6",
-    // "passport-twitter": "~1.0.2"
-
-
-
+app.use(morgan('dev')); 
+app.use(cookieParser());
+//app.use(bodyParser()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -43,35 +27,28 @@ app.use(express.static(__dirname + '/public'));
  * DATABASE *
  ************/
 
+let db = require('./models');
+
 
 /**********
  * ROUTES *
  **********/
 
-/*
- * HTML Endpoints
- */
+app.use(session({ secret: 'SuperTopSecretStashyThing', resave: true, saveUninitialized: true } )); 
+app.use(passport.initialize());
+app.use(passport.session()); 
+app.use(flash()); 
 
-// Home
-app.get('/', function homepage(req, res) {
-  res.render('index');
+require('./config/passport')(passport);
+
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
 });
 
-app.get('/main', function mainpage(req, res) {
-  res.render('main');
-});
+let routes = require('./config/routes');
+app.use(routes);
 
-
-/*
- * JSON API Endpoints
- */
-
-// GET /                  documentation
-// GET /breed             list of breeds (names only)
-// GET /breed/:name       info for specified breed
-// POST /breed            add a new breed
-// PUT /breed/:name       update a breed
-// DELETE /breed/:name    delete breed
 
 /**********
  * SERVER *
