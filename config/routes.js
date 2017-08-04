@@ -1,10 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');  // used to manipulate POST methods
-var passport = require("passport");
-var usersController = require('../controllers/users');
-var staticsController = require('../controllers/statics');
+let express = require('express');
+let router = express.Router();
+let bodyParser = require('body-parser');
+let methodOverride = require('method-override');  // used to manipulate POST methods
+let passport = require("passport");
+let usersController = require('../controllers/users');
+let staticsController = require('../controllers/statics');
+let apisController = require('../controllers/apis');
 
 
 // function authenticatedUser(req, res, next) {
@@ -21,6 +22,9 @@ router.route('/')
 router.route('/inventory')
   .get(staticsController.inventory);
 
+router.route('/addStash')
+  .get(staticsController.addStash);
+
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup);
@@ -34,5 +38,21 @@ router.route('/logout')
 
 // router.route('/secret')
 //   .get(authenticatedUser, usersController.secret);
+
+router.route('/api')
+  .get(apisController.apiDoc);
+
+router.route('/api/breed')
+  .get(apisController.apiIndex);
+
+router.route('/api/breed/all')
+  .get(apisController.apiShowAll);
+
+router.route('/api/breed/:name')
+  .get(apisController.apiShow);
+
+router.route('/api/breed')
+  .post(apisController.apiNew);
+
 
 module.exports = router;

@@ -1,4 +1,4 @@
-var passport = require('passport');
+let passport = require('passport');
 
 // GET /signup
 function getSignup(request, response) {
@@ -9,7 +9,7 @@ function getSignup(request, response) {
 // POST /signup
 function postSignup(request, response, next) {
   console.log('postSignup');
-  var signupStrategy = passport.authenticate('local-signup', {
+  let signupStrategy = passport.authenticate('local-signup', {
     successRedirect: '/inventory',
     failureRedirect: '/signup',
     failureFlash: true
@@ -25,7 +25,7 @@ function getLogin(request, response, next) {
 
 // POST /login 
 function postLogin(request, response, next) {
-  var loginProperty = passport.authenticate('local-login', {
+  let loginProperty = passport.authenticate('local-login', {
     successRedirect: '/inventory',
     failureRedirect: '/',
     failureFlash: true

@@ -1,0 +1,76 @@
+<% include ./partials/header.ejs %>
+
+  <div class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <img src="images/mauricio-fanfa-68657_small.jpg" class="img-rounded img-responsive">
+        </div>
+        <div class="col-sm-12 col-md-6">
+          <h1>stashy <small>all the fiber</small></h1>
+
+          <form method="post" action="/addStash">
+            <div class="form-group">
+              <label for="item">Item</label>
+              <input class="form-control" type="text" name="item" id="item" placeholder="what do you want to call this?" autofocus required>
+            </div>
+
+           <div class="form-group">
+              <label for="primary">Main fiber</label>
+              <select class="form-control">
+                <option selected>sheep</option>
+                <option>black sheep</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="others">Other fibers</label>
+              <input class="form-control" type="text" name="others" id="others" placeholder="list other fibers, separated by commas">
+            </div>
+
+            <div class="form-group">
+              <label for="form">Fiber form</label>
+              <select class="form-control">
+                <option selected>roving</option>
+                <option>fleece</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="blend">blend percentages</label>
+              <select class="form-control">
+                <option value="not a blend"selected>not a blend</option>
+                <option value="50/50">50/50</option>
+                <option value="60/20/20">60/20/20</option>
+                <option value-"70/30">70/30</option>
+                <option value="80/20">80/20</option>
+                <option value="90/10">90/10</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="colorFamily">Color famiy</label>
+              <select class="form-control">
+                <option selected>naturals</option>
+                <option value="reds">reds</option>
+                <option value="oranges">oranges</option>
+                <option value="yellows">yellows</option>
+                <option value="greens">greens</option>
+                <option value="blues">blues</option>
+                <option value="purples">purples</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" rows="3" placeholder="add anything you want to remember about this fiber!"></textarea>
+            </div>
+
+            <input id="addStash" class="btn btn-primary btn-block btn-lg" type="submit" value="add to stash">
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+
+<% include ./partials/footer.ejs %>
