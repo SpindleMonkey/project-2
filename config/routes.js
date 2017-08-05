@@ -23,7 +23,10 @@ router.route('/inventory')
   .get(staticsController.inventory);
 
 router.route('/addStash')
-  .get(staticsController.addStash);
+  .get(staticsController.addStash)
+  .post(staticsController.postStash);
+
+
 
 router.route('/signup')
   .get(usersController.getSignup)
@@ -38,6 +41,11 @@ router.route('/logout')
 
 // router.route('/secret')
 //   .get(authenticatedUser, usersController.secret);
+
+
+
+router.route('/api/user')
+  .get(apisController.apiUser);
 
 router.route('/api')
   .get(apisController.apiDoc);

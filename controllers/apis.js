@@ -1,7 +1,26 @@
 
 let db = require('../models');
+
 /*
- * JSON API Endpoints
+ * JSON User API Endpoints
+ */
+
+function apiUser(req, res){
+  console.log('GET /api/user');
+  console.log('req.user: ' + req.user);
+  if (req.user) {
+    db.User.find({}, function(err, users) {
+      if (err) res.status(503).send('ERROR:' + err);
+      res.json(users[0]);
+    });
+  } else {
+    res.status(404).send('user not logged in');
+  }
+}
+
+
+/*
+ * JSON Breed API Endpoints
  */
 
 // GET /api                  documentation
@@ -114,6 +133,7 @@ function apiDelete(req, res) {
 
 
 module.exports = {
+  apiUser: apiUser,
   apiDoc: apiDoc,
   apiIndex: apiIndex,
   apiShow: apiShow,
