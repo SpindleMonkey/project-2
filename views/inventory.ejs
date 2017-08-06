@@ -2,21 +2,120 @@
  
   <div class="container-fluid">
     <div class="container">
+
       <div class="row">
         <div class="col-sm-12">
-          <h3>this is your stash. really. <a href="/logout" class="btn btn-primary btn-sm active" role="button">Log out</a></h3>
+          <h2>this is your stash. really. 
+          <a href="/logout" class="btn btn-primary btn-sm active" role="button">Log out</a></h3>
         </div>
-      </div>
+      </div>  
+
       <div class="row">
-        <div id="inventory" class="col-sm-12">
-          
+        <div class="col-sm-12 col-md-6">
+          <div id="inventory" class="col-sm-12 col-md-6">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+
+          <form method="post" action="/inventory">
+            <h2>Add to your stash?</h2>
+
+            <div class="form-group">
+              <label for="item">Item</label>
+              <input class="form-control" type="text" name="item" id="item" placeholder="what do you want to call this?" autofocus required>
+            </div>
+
+           <div class="form-group">
+              <label for="primary">Main fiber</label>
+              <select id="primary" class="form-control" required>
+                <option value"sheep" selected>sheep</option>
+                <option value="black sheep">black sheep</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="others">Other fibers</label>
+              <input class="form-control" type="text" name="others" id="others" placeholder="list other fibers, separated by commas">
+            </div>
+
+            <div class="form-group">
+              <label for="fiberForm">Fiber form</label>
+              <select id="fiberForm" class="form-control">
+                <option value="roving" selected>roving</option>
+                <option value="top">top</option>
+                <option value="batt">batt</option>
+                <option value="locks">locks</option>
+                <option value="fleece">fleece</option>
+              </select>
+            </div>
+
+            <!-- if Fiber form is fleece, show 2 radio buttons: raw, washed -->
+
+            <div class="form-group">
+              <label for="blend">Blend percentages</label>
+              <select id="blend" class="form-control">
+                <option value="not a blend" selected>not a blend</option>
+                <option value="50/50">50/50</option>
+                <option value="60/20/20">60/20/20</option>
+                <option value-"70/30">70/30</option>
+                <option value="80/20">80/20</option>
+                <option value="90/10">90/10</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="quantity">How much do you have?</label>
+              <input class="form-control" type="text" id="quantity" placeholder="4">
+              <select id="units" class="form-control">
+                <option value="ounces" selected>ounces</option>
+                <option value="pounds">pounds</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="colorFamily">Color family</label>
+              <select id="colorFamily" class="form-control">
+                <option value="natural" selected>naturals</option>
+                <option value="reds">reds</option>
+                <option value="oranges">oranges</option>
+                <option value="yellows">yellows</option>
+                <option value="greens">greens</option>
+                <option value="blues">blues</option>
+                <option value="purples">purples</option>
+                <option value="neutrals">neutrals</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="dyeState">Dyed?</label><br>
+              <input type="radio" name="dyeState" value="natural" selected> no<br>            
+              <input type="radio" name="dyeState" value="naturalDyes"> natural dyes<br>
+              <input type="radio" name="dyeState" value="synthetics"> synthetic dyes
+            </div>
+
+            <div class="form-group">
+              <label for="glitz">Glitz?</label><br>
+              <input type="radio" name="glitz" value="no" selected> no<br>
+              <input type="radio" name="glita" value="yes"> yes
+            </div>
+
+            <div class="form-group">
+              <label for="noils">Noils or neps or other chunky bits?</label><br>
+              <input type="radio" name="noils" value="no" selected> no<br>
+              <input type="radio" name="noils" value="yes"> yes
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" id="notes" rows="3" placeholder="add anything you want to remember about this fiber!"></textarea>
+            </div>
+
+            <input id="addStash" class="btn btn-primary btn-block btn-lg" type="submit" value="add to stash">
+          </form>
+
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <a href="/addStash" class="btn btn-primary btn-lg btn-block active" role="button">Add to stash</a>
-        </div>
-      </div>
+
     </div>
   </div>
 

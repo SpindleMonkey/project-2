@@ -1,5 +1,6 @@
 let mongoose = require('mongoose');
 let bcrypt= require('bcrypt-nodejs');
+let Breed = require('./breed');
 
 Schema = mongoose.Schema;
 
@@ -12,7 +13,7 @@ let User = new Schema({
     password: String,    
   },
   inventory: [Stash.schema],
-  breeds: [Breed.schema],
+  breeds: [{type: Schema.Types.ObjectId, ref: 'Breed'}],
   // favorite breeds
   // favorite sources
   // sources wish list

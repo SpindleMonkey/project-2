@@ -3,8 +3,8 @@ let router = express.Router();
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');  // used to manipulate POST methods
 let passport = require("passport");
-let usersController = require('../controllers/users');
 let staticsController = require('../controllers/statics');
+let usersController = require('../controllers/users');
 let apisController = require('../controllers/apis');
 
 
@@ -21,10 +21,6 @@ router.route('/')
 
 router.route('/inventory')
   .get(staticsController.inventory);
-
-router.route('/addStash')
-  .get(staticsController.addStash)
-  .post(staticsController.postStash);
 
 
 
