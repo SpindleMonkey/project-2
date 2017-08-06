@@ -18,6 +18,20 @@ function apiUser(req, res){
   }
 }
 
+function apiNewStash(req, res){
+  console.log('POST /api/user');
+  console.log('req.user: ' + req.user);
+  console.log('req.body: ' + req.body);
+  if (req.user) {
+    db.User.findOneAndUpdate({'local.email': req.user.local.email}, req.body, function(err, updatedUser) {
+      if (err) res.status(503).send('ERROR::' + err);
+      res.json(updateduser);
+    });
+  } else {
+    res.status(404).send('user not logged in');
+  }
+}
+
 
 /*
  * JSON Breed API Endpoints
@@ -77,7 +91,7 @@ function apiShow(req, res) {
 }
 
 // POST /api/breed           add a new breed
-function apiNew(req, res) {
+function apiNewBreed(req, res) {
   console.log('POST /api/breed');
   // create a new breed in the db
   //console.log(req.body);

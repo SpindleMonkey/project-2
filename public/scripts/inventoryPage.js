@@ -16,7 +16,7 @@ $(document).ready(function() {
     //console.log(stash.local);
 
     // build up the HTML needed to dispay this item from the stash
-    let stashHtml = '<p>name: ' + stash.local.email + '</p>';
+    let stashHtml = '<p>name: ' + stash.inventory.item + '</p>';
 
     $('#inventory').prepend(stashHtml);
   }
@@ -26,9 +26,7 @@ $(document).ready(function() {
     console.log(json);
 
     // dump the inventory to inventory.ejs
-    if (json.inventory.length === 0) {
-      $('#inventory').append('<p>Looks like you need to add a few items to your stash!</p>');
-    } else {
+    if (json.inventory.length > 0) {
       json.inventory.forEach(function(stash) {
         renderStash(stash);
       });
@@ -65,13 +63,13 @@ $(document).ready(function() {
     let str = JSON.stringify(newStashItem);
     console.log(str);
 
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/api/stash',
-    //   data: str,
-    //   success: handlePostSuccess,
-    //   error: handlePostError
-    // });
+    $.ajax({
+      method: 'POST',
+      url: '/api/user',
+      data: str,
+      success: handlePostSuccess,
+      error: handlePostError
+    });
 
     // clear the form
     $(this)[0].reset();

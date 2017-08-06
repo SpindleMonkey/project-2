@@ -43,6 +43,9 @@ router.route('/logout')
 router.route('/api/user')
   .get(apisController.apiUser);
 
+router.route('/api/user')
+  .post(apisController.apiNewStash);
+
 router.route('/api')
   .get(apisController.apiDoc);
 
@@ -56,7 +59,7 @@ router.route('/api/breed/:name')
   .get(apisController.apiShow);
 
 router.route('/api/breed')
-  .post(apisController.apiNew);
+  .post(apisController.apiNewBreed);
 
 
 module.exports = router;
