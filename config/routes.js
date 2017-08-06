@@ -46,6 +46,8 @@ router.route('/api/user')
 router.route('/api/user')
   .post(apisController.apiNewStash);
 
+
+
 router.route('/api')
   .get(apisController.apiDoc);
 
@@ -59,7 +61,13 @@ router.route('/api/breed/:name')
   .get(apisController.apiShow);
 
 router.route('/api/breed')
-  .post(apisController.apiNewBreed);
+  .post(apisController.apiNew);
+
+router.route('/api/breed/:name')
+  .put(apisController.apiUpdate);
+
+router.route('/api/breed/:name')
+  .delete(apisController.apiDelete);
 
 
 module.exports = router;
