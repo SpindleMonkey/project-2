@@ -20,8 +20,33 @@ $(document).ready(function() {
 
     // build up the HTML needed to dispay this item from the stash
     // and include the _id so we can display all the stash info if user wants it
-    let stashHtml = '<button type="button" class="list-group-item view-details" id="' + stash._id + 
-      '">' + stash.item;
+    let stashHtml = '<button type="button" class="btn btn-primary btn-block"' +
+      ' data-toggle="collapse" data-target="#collapse' + stash._id + 
+      '" aria-expanded="false" aria-controls="collapse' + stash._id + '">' +
+      stash.item + '</button>';
+
+    let others = stash.otherFibers.join(', ');
+    console.log('others: ' + others);
+    if (others === '') {
+      others = 'none';
+    }
+    console.log('others: ' + others);
+
+    console.log(others);
+    stashHtml = stashHtml + '<div class="collapse" id="collapse' + stash._id + '">' +
+      '<div class="well">' +
+      ' <strong>Primary fiber:</strong> ' + stash.primaryFiber + '<br>' +
+      ' <strong>Other fibers:</strong> ' + others + '<br>' +
+      ' <strong>Blend?</strong> ' + stash.blendInfo + '<br>' +
+      ' <strong>Amount:</strong> ' + stash.howManyUnits + ' ' + stash.units + '<br>' +
+      ' <strong>Color family:</strong> ' + stash.colorFamily + '<br>' +
+      ' <strong>Dyed?</strong> ' + stash.dyed + '<br>' +
+      ' <strong>Glitz?</strong> ' + stash.glitz + '<br>' +
+      ' <strong>Noils?</strong> ' + stash.noils + '<br>' +
+      ' <strong>Notes:</strong> ' + stash.notes + '<br>' +
+      '</div></div>';
+
+    console.log(stashHtml);
 
     $('.list-group').append(stashHtml);
   }
@@ -96,12 +121,12 @@ $(document).ready(function() {
     event.preventDefault();
 
     // grab all the data from the form
-    let otherArray = $('#others').val().split(', ');
+    let otherFluff = $('#others').val().split(', ');
 
     let newStashItem = {
       item: $('#item').val(),
       primaryFiber: $('#primary').val(),
-      otherFibers: otherArray,
+      otherFibers: otherFluff,
       form: $('#fiberForm').val(),
       blendInfo: $('#blend').val(),
       units: $('#units').val(), 
