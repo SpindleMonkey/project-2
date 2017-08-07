@@ -8,7 +8,7 @@ let StashSchema = new Schema({
   form: String, // roving, top, batt, fleece, locks, etc. -- use a pulldown
   //fiberState: String, // applies only to fleece & locks: raw/unwashed or washed
   blendInfo: String, // this needs to be an array or a pulldown!
-  units: Number, // lbs, oz, grams, etc.
+  units: String, // lbs, oz, grams, etc.
   howManyUnits: Number, // do i care about package size? e.g., 4oz. braid?
   colorFamily: String, // use a pulldown
   dyed: String, // natural or synthetic or undyed

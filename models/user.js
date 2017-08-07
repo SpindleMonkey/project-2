@@ -13,7 +13,8 @@ let User = new Schema({
     password: String,    
   },
   inventory: [Stash.schema],
-  breeds: [{type: Schema.Types.ObjectId, ref: 'Breed'}],
+  favorites: [Stash.schema],
+  //breeds: [{type: Schema.Types.ObjectId, ref: 'Breed'}],
   // favorite breeds
   // favorite sources
   // sources wish list

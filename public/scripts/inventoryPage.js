@@ -2,7 +2,10 @@
 $(document).ready(function() {
   console.log('running!');
 
-  // get the user's current inventory
+  /*
+   * get the user's current inventory and display it
+   */
+
   $.ajax({
     method: 'GET',
     url: '/api/user',
@@ -12,18 +15,20 @@ $(document).ready(function() {
 
   function renderStash(stash) {
     console.log('renderStash');
-    //console.log(stash);
+    console.log(stash);
     //console.log(stash.local);
 
     // build up the HTML needed to dispay this item from the stash
-    let stashHtml = '<p>name: ' + stash.inventory.item + '</p>';
+    // and include the _id so we can display all the stash info if user wants it
+    let stashHtml = '<button type="button" class="list-group-item view-details" id="' + stash._id + 
+      '">' + stash.item;
 
-    $('#inventory').prepend(stashHtml);
+    $('.list-group').append(stashHtml);
   }
 
   function handleSuccess(json) {
     console.log('handleSuccess');
-    console.log(json);
+    //console.log(json);
 
     // dump the inventory to inventory.ejs
     if (json.inventory.length > 0) {
@@ -39,7 +44,55 @@ $(document).ready(function() {
   }
 
 
-  $("form").on('submit', function(event) {
+  /*
+   * get the list of breed names to build the primary dropdown in the 'add to stash' form
+   */
+
+  $.ajax({
+    method: 'GET',
+    url: '/api/breed',
+    success: handleGetSheepSuccess,
+    error: handleGetSheepError
+  });
+
+  function renderBreedOptions(breeds) {
+    console.log('renderBreedOptions');
+    //console.log(breeds);
+
+    // build up the HTML needed to fill the primary fiber dropdown
+    let breedHtml = '';
+    for (let i = 0; i < breeds.length; i++) {
+      // Set the Mystery White Sheep as the efault (this is readable, but not the most efficient>
+      if (breeds[i] == 'Mystery White Sheep') {
+        breedHtml = breedHtml + '<option value"' + breeds[i] + '" selected>' + breeds[i] + '</option>';
+      } else {
+        breedHtml = breedHtml + '<option value"' + breeds[i] + '">' + breeds[i] + '</option>';
+      }
+    }
+
+    //console.log(breedHtml);
+
+    $('#primary').append(breedHtml);
+  }
+
+  function handleGetSheepSuccess(json) {
+    console.log('handleGetSheepSuccess');
+    //console.log(json);
+
+    renderBreedOptions(json);
+  }
+
+  function handleGetSheepError() {
+    console.log('failed to get list of breeds. sorry.');
+  }
+
+
+
+  /*
+   * add a new stash item to a user's inventory
+   */
+
+  $('form').on('submit', function(event) {
     event.preventDefault();
 
     // grab all the data from the form
@@ -60,13 +113,13 @@ $(document).ready(function() {
       notes: $('#notes').val(),
     };
 
-    let str = JSON.stringify(newStashItem);
-    console.log(str);
+    // let str = JSON.stringify(newStashItem);
+    // console.log(str);
 
     $.ajax({
       method: 'POST',
-      url: '/api/user',
-      data: str,
+      url: '/api/user/stash',
+      data: newStashItem,
       success: handlePostSuccess,
       error: handlePostError
     });
@@ -77,60 +130,41 @@ $(document).ready(function() {
 
   function handlePostSuccess(json) {
     console.log(json);
-    // need to add stash to user
-    renderStash(json);
+    // get the updated user info
+      // get the new album info
+    $.ajax({
+      method: 'GET',
+      url: 'api/user',
+      success: handleUpdatedUserSuccess,
+      error: handleUpdatedUserError
+    });
+
   }
 
-  function handlePostError() {
-    console.log('failed to add new stash. sorry.');
+  function handlePostError(json) {
+    console.log('failed to add stash. sorry.');
+  }
+
+  function handleUpdatedUserSuccess(json) {
+    console.log(json);
+    // the new stash was added to the end of the inventory
+    renderStash(json.inventory[json.inventory.length - 1]);
+  }
+
+  function handleUpdatedUserError(json) {
+    console.log('failed to get updated inventory. sorry.');
   }
 
 
 
-//   function addStash(req, res, next) {
-//   console.log('/addStash');
-//   res.render('addStash');
-// }
+  /*
+   * button handler to show stash details
+   */
 
-// function postStash(req, res) {
-//   console.log('POST /addStash');
-//   console.log(req.user);
-//   console.log(req.body);
-
-//   if (!req.body.item) {
-//     res.status(503).send('cannot add stash item without some kind of name');
-//   } else if (!req.body.form) {
-//     res.status(503).send('cannot add stash without knowing what form it\'s in');
-//   } else {
-//     let stashList = req.body.otherFibers ? req.body.otherFibers.split(', ') : ''; 
-//     let newStash = new db.Stash({
-//       item: req.body.item,
-//       primaryFiber: req.body.primaryFiber || 'Mystery Sheep',
-//       otherFibers: stashList,
-//       form: req.body.form,
-//       fiberState: req.body.fiberState || 'roving',
-//       blendInfo: req.body.blendInfo || 'not a blend',
-//       units: req.body.amountUnits || '',
-//       howManyUnits: req.body.quantity || 0,
-//       colorFamily: req.body.colorFamily || 'naturals',
-//       dyed: req.body.dyed || 'natural color',
-//       glitz: req.body.glitz || false, 
-//       noils: req.body.noils || false,
-//       notes: req.body.notes || '',
-//     });
-
-//     db.Stash.create(newStash, function(err, aStash) {
-//       if (err) res.status(503).send('cannot create stash for your inventory');
-//       db.User.findOneAndUpdate({ 'local.email': req.user.local.email }, req.user.inventory.push(newStash), function(err, updatedUser) {
-//         if (err) res.status(503).send('could not add stash to your inventory');
-//         res.render('inventory');
-//       // theUser.breeds.push(gah! have to find the breed in the db first!)
-//       });
-//     });
-
-//   }
-// }
-
-
+  $('.view-details').on('click', function(event){
+    console.log('stash item clicked');
+    let idClicked = event.target.id;
+    console.log(idClicked);
+  });
 
 });

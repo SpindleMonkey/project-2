@@ -21,22 +21,49 @@ function apiUser(req, res){
   }
 }
 
-function apiNewStash(req, res){
-  console.log('POST /api/user');
+function apiNewStash(req, res) {
+  console.log('POST /api/user/stash');
   console.log('req.user: ' + req.user);
   console.log('req.body: ' + req.body);
+  console.log('req.body.item: ' + req.body.item);
   if (req.user) {
-    db.User.findOneAndUpdate({'local.email': req.user.local.email}, req.body, function(err, updatedUser) {
+    console.log('there is a user');
+    db.Stash.create(req.body, function(err, newStash) {
+      console.log('call to db.Stash.create was made');
       if (err) {
+        console.log('err during create');
+        console.log('err: ' + err);
         res.status(503).send('ERROR::' + err);
       } else {
-        res.json(updateduser);
+        console.log(req.user._id);
+        console.log(newStash);
+        db.User.update({_id: req.user._id}, { $push: {inventory: newStash} }, function(err, updatedUser) {
+          if (err) {
+            console.log('err during update');
+            console.log('err: ' + err);
+            res.status(503).send('ERROR::' + err);
+          } else {
+            res.json(updatedUser);
+          }
+        });
       }
     });
-  } else {
-    res.status(404).send('user not logged in');
   }
 }
+
+// app.post('/api/albums/:album_id/songs', function album_add_song(req, res) {
+//   db.Album.find(req.params.album_id, function(err, album) {
+//     if (err) res.status(404).send('could not find album for new song. sorry.');
+//     db.Song.create(req.body, function(err, song) {
+//       if (err) res.status(503).send('could not add new song. sorry.');
+//       db.Album.update({_id: req.params.album_id}, { $push: {songs: song} }, function(err, album) {
+//         if (err) res.status(503).send('could not add song to album. sorry.');
+//         res.json(album);
+//       });
+//     });
+//   });
+// });
+
 
 
 /*

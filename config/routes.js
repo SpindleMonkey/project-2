@@ -43,7 +43,7 @@ router.route('/logout')
 router.route('/api/user')
   .get(apisController.apiUser);
 
-router.route('/api/user')
+router.route('/api/user/stash')
   .post(apisController.apiNewStash);
 
 
