@@ -37,7 +37,7 @@ Inspirations:
 ---
 
 ### installation instructions
-Installation is pretty simple: point your browser to *****.
+Installation is pretty simple: point your browser to [https://damp-lake-69933.herokuapp.com/](https://damp-lake-69933.herokuapp.com/).
 
 
 ---
@@ -79,6 +79,8 @@ Installation is pretty simple: point your browser to *****.
 
 ### approach taken
 
+8/7/17: I have the basic bones of an inventory app: auth, individual user inventories, inventory displays, inventory details. The biggest thing that's missing right now is a way to modify your inventory (there's no edit or delete).
+
 8/6/17: User can add new items to stash. Unit tests for the breed API have been started.
 User's inventory is shown after login, and is updated when new stash is added. Working through the logic needed to show details for a selected stash item. 
 
@@ -102,5 +104,5 @@ to get the breed collection populated today.
 ---
 
 ### unsolved problems
-1. 
+1. User inventories aren't linked to the Breed collection.
 
