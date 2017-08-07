@@ -9,7 +9,7 @@ function apiUser(req, res){
   console.log('GET /api/user');
   console.log('req.user: ' + req.user);
   if (req.user) {
-    db.User.find({}, function(err, users) {
+    db.User.find({'_id': req.user._id}, function(err, users) {
       if (err) {
         res.status(503).send('ERROR:' + err);
       } else {
