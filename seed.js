@@ -253,20 +253,20 @@ let breedList = [
     description: 'Remember that black wool you swore you would always remember? *That* one.',
     image: 'n/a',
     infoSources: [
-      'http://www.ansi.okstate.edu/breeds/sheep/polwarth',
+      'n/a',
     ],
   },
   {
     name: 'Mystery White Sheep',
-    origin: 'Australia',
+    origin: '',
     status: 'n/a',
     stapleLength: '',
     fleeceWeight: '',
-    fiberDiameter: '22-25 micron',
+    fiberDiameter: '',
     description: 'Remember that white wool you swore you would always remember? *That* one.',
     image: 'n/a',
     infoSources: [
-      'http://www.ansi.okstate.edu/breeds/sheep/polwarth',
+      'n/a',
     ],
   },
   {
