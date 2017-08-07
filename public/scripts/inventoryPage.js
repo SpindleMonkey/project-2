@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-  console.log('running!');
+  //console.log('running!');
 
   /*
    * get the user's current inventory and display it
@@ -14,25 +14,25 @@ $(document).ready(function() {
   });
 
   function renderStash(stash) {
-    console.log('renderStash');
-    console.log(stash);
+    //console.log('renderStash');
+    //console.log(stash);
     //console.log(stash.local);
 
-    // build up the HTML needed to dispay this item from the stash
+    // build up the HTML needed to display this item from the stash
     // and include the _id so we can display all the stash info if user wants it
-    let stashHtml = '<button type="button" class="btn btn-primary btn-block"' +
+    let stashHtml = '<button type="button" class="btn btn-primary btn-block active"' +
       ' data-toggle="collapse" data-target="#collapse' + stash._id + 
       '" aria-expanded="false" aria-controls="collapse' + stash._id + '">' +
       stash.item + '</button>';
 
     let others = stash.otherFibers.join(', ');
-    console.log('others: ' + others);
+    //console.log('others: ' + others);
     if (others === '') {
       others = 'none';
     }
-    console.log('others: ' + others);
+    //console.log('others: ' + others);
 
-    console.log(others);
+    //console.log(others);
     stashHtml = stashHtml + '<div class="collapse" id="collapse' + stash._id + '">' +
       '<div class="well">' +
       ' <strong>Primary fiber:</strong> ' + stash.primaryFiber + '<br>' +
@@ -46,13 +46,13 @@ $(document).ready(function() {
       ' <strong>Notes:</strong> ' + stash.notes + '<br>' +
       '</div></div>';
 
-    console.log(stashHtml);
+    //console.log(stashHtml);
 
     $('.list-group').append(stashHtml);
   }
 
   function handleSuccess(json) {
-    console.log('handleSuccess');
+    //console.log('handleSuccess');
     //console.log(json);
 
     // dump the inventory to inventory.ejs
@@ -64,7 +64,7 @@ $(document).ready(function() {
   }
 
   function handleError() {
-    console.log('failed to get stash');
+    //console.log('failed to get stash');
     $('#inventory').text('failed to get stash. sorry.');
   }
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
   });
 
   function renderBreedOptions(breeds) {
-    console.log('renderBreedOptions');
+    //console.log('renderBreedOptions');
     //console.log(breeds);
 
     // build up the HTML needed to fill the primary fiber dropdown
@@ -101,7 +101,7 @@ $(document).ready(function() {
   }
 
   function handleGetSheepSuccess(json) {
-    console.log('handleGetSheepSuccess');
+    //console.log('handleGetSheepSuccess');
     //console.log(json);
 
     renderBreedOptions(json);
@@ -154,7 +154,7 @@ $(document).ready(function() {
   });
 
   function handlePostSuccess(json) {
-    console.log(json);
+    //console.log(json);
     // get the updated user info
       // get the new album info
     $.ajax({
@@ -171,7 +171,7 @@ $(document).ready(function() {
   }
 
   function handleUpdatedUserSuccess(json) {
-    console.log(json);
+    //console.log(json);
     // the new stash was added to the end of the inventory
     renderStash(json.inventory[json.inventory.length - 1]);
   }
@@ -180,16 +180,5 @@ $(document).ready(function() {
     console.log('failed to get updated inventory. sorry.');
   }
 
-
-
-  /*
-   * button handler to show stash details
-   */
-
-  $('.view-details').on('click', function(event){
-    console.log('stash item clicked');
-    let idClicked = event.target.id;
-    console.log(idClicked);
-  });
 
 });

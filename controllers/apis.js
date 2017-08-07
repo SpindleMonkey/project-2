@@ -1,11 +1,16 @@
 
-let db = require('../models');
+// Require apiKey for Weather Underground
+const env = require('../env.js');
+const request = require('request');
+
+const db = require('../models');
+
 
 /*
  * JSON User API Endpoints
  */
 
-function apiUser(req, res){
+function apiUser(req, res) {
   console.log('GET /api/user');
   console.log('req.user: ' + req.user);
   if (req.user) {
@@ -19,6 +24,30 @@ function apiUser(req, res){
   } else {
     res.status(404).send('user not logged in');
   }
+}
+
+function apiUserWeather(req, res) {
+  console.log('GET /api/user/weather');
+
+  // Left geolocation way too late in the game, so I'm hardcoding the location :(
+  let city = "Denver";
+  let state = "CO";
+  let qStr = '/q/' + state + '/' + city;
+
+  let myKey = env.name;
+  console.log(myKey);
+
+  let theUrl = 'http://api.wunderground.com/api/' + myKey + '/conditions/' + qStr + '.json';
+
+  // The actual request sending
+  request(theUrl, function (err, response, body) {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.json(body);
+    }
+  });
+
 }
 
 function apiNewStash(req, res) {
@@ -50,20 +79,6 @@ function apiNewStash(req, res) {
     });
   }
 }
-
-// app.post('/api/albums/:album_id/songs', function album_add_song(req, res) {
-//   db.Album.find(req.params.album_id, function(err, album) {
-//     if (err) res.status(404).send('could not find album for new song. sorry.');
-//     db.Song.create(req.body, function(err, song) {
-//       if (err) res.status(503).send('could not add new song. sorry.');
-//       db.Album.update({_id: req.params.album_id}, { $push: {songs: song} }, function(err, album) {
-//         if (err) res.status(503).send('could not add song to album. sorry.');
-//         res.json(album);
-//       });
-//     });
-//   });
-// });
-
 
 
 /*
@@ -234,6 +249,7 @@ function apiDelete(req, res) {
 module.exports = {
   apiUser: apiUser,
   apiNewStash: apiNewStash,
+  apiUserWeather: apiUserWeather,
   apiDoc: apiDoc,
   apiIndex: apiIndex,
   apiShow: apiShow,
