@@ -14,9 +14,8 @@ let User = new Schema({
   },
   inventory: [Stash.schema],
   favorites: [Stash.schema],
+  avatar: String,
   //breeds: [{type: Schema.Types.ObjectId, ref: 'Breed'}],
-  // favorite breeds
-  // favorite sources
   // sources wish list
   // breed wish list
   // blend wish list

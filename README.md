@@ -57,7 +57,7 @@ Installation is pretty simple: point your browser to [https://damp-lake-69933.he
 
 * Not Front, Not Back
   * Ajax
-  * express
+  * Express
 
 * Back End
   * Node.js
@@ -66,6 +66,7 @@ Installation is pretty simple: point your browser to [https://damp-lake-69933.he
   * EJS
   * Mongo
   * Mongoose
+  * Request
 
 * Testing
   * mocha
@@ -79,12 +80,12 @@ Installation is pretty simple: point your browser to [https://damp-lake-69933.he
 
 ### approach taken
 
-8/7/17: I have the basic bones of an inventory app: auth, individual user inventories, inventory displays, inventory details. The biggest thing that's missing right now is a way to modify your inventory (there's no edit or delete).
+8/7/17: I have the basic bones of an inventory app: auth, individual user inventories, inventory displays, inventory details. The biggest thing that's missing right now is a way to modify your inventory (there's no edit or delete). Hosted on heroku and running successfully!
 
 8/6/17: User can add new items to stash. Unit tests for the breed API have been started.
 User's inventory is shown after login, and is updated when new stash is added. Working through the logic needed to show details for a selected stash item. 
 
-Based on what I have done, and what I still hae to do, I think I'll have to put stash edit and stash delete off to the very end (and if I do get to one of them, delete comes first because you could still 'edit' your stash by deleting an item, and adding the updated item; ugly, but it would be a work-around).
+Based on what I have done, and what I still have to do, I think I'll have to put stash edit and stash delete off to the very end (and if I do get to one of them, delete comes first because you could still 'edit' your stash by deleting an item, and adding the updated item; ugly, but it would be a work-around).
 
 8/5/17: Used Tunely to help me figure out my routes for adding new stash items, but still
 don't have that working.

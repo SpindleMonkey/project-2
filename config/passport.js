@@ -3,6 +3,26 @@ const User = require('../models/user');
 
 module.exports = function(passport) {
 
+  /**
+  * Use random numbers to pick images for the users. 
+  * This version returns from min up to and including max (inclusive).
+  */
+  let avatars = [
+    'images/aSheep1.png',
+    'images/aSheep2.png',
+    'images/aSheep3.png',
+    'images/aSheep4.png',
+    'images/aSheep5.jpg',
+    'images/aSheep6.png'
+  ];
+
+  function getRandom(min, max) {
+    let myMin = Math.ceil(min);
+    let myMax = Math.floor(max);
+    return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+  }
+
+
   passport.serializeUser(function(user, callback) {
     callback(null, user.id);
   });
@@ -30,6 +50,7 @@ module.exports = function(passport) {
         let newUser = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.makeHash(password);
+        newUser.avatar = avatars[getRandom(0, 7)];
 
         newUser.save(function(err) {
           if (err) throw err;

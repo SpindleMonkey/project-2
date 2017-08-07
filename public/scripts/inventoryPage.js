@@ -44,6 +44,7 @@ $(document).ready(function() {
       ' <strong>Glitz?</strong> ' + stash.glitz + '<br>' +
       ' <strong>Noils?</strong> ' + stash.noils + '<br>' +
       ' <strong>Notes:</strong> ' + stash.notes + '<br>' +
+      // ' <a href="/inventory" class="btn btn-primary active pull-right" role="button">Remove</a><br>' +
       '</div></div>';
 
     //console.log(stashHtml);
@@ -54,6 +55,11 @@ $(document).ready(function() {
   function handleSuccess(json) {
     //console.log('handleSuccess');
     //console.log(json);
+
+    // but first, let's show the user's avatar
+    let avatar = json.avatar || 'images/aSheep6.png';
+    $('#invNav').prepend('<img id="avatar" src="' + avatar + '" alt="user avatar" class="pull-right">');
+
 
     // dump the inventory to inventory.ejs
     if (json.inventory.length > 0) {
