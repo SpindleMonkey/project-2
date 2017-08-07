@@ -3,7 +3,47 @@
 
 let db = require('./models');
 
+
+
 let breedList = [ 
+  {
+    name: 'Alpaca - huacaya',
+    origin: 'South America',
+    status: 'n/a',
+    stapleLength: '',
+    fleeceWeight: '',
+    fiberDiameter: '',
+    description: 'Alpacas are members of the camelid family. The camels that most people are familiar with are the ones with humps; the dromedary of Northern Africa, the Middle East, and Southern Asia, and the Bactrian camel of China and Tibet. However, there are four other camelids (without humps) that are indigenous to South America: two of them, llamas and alpacas, have been domesticated for thousands of years; whereas the other two varieties, guanacos and vicunas, continue to roam in wild herds today.',
+    image: 'n/a',
+    infoSources: [ 
+      'http://www.alpacainfo.com/academy/about-alpacas'
+    ],
+  },
+  {
+    name: 'Alpaca - suri',
+    origin: 'South America',
+    status: 'n/a',
+    stapleLength: '',
+    fleeceWeight: '',
+    fiberDiameter: '',
+    description: 'Alpacas are members of the camelid family. The camels that most people are familiar with are the ones with humps; the dromedary of Northern Africa, the Middle East, and Southern Asia, and the Bactrian camel of China and Tibet. However, there are four other camelids (without humps) that are indigenous to South America: two of them, llamas and alpacas, have been domesticated for thousands of years; whereas the other two varieties, guanacos and vicunas, continue to roam in wild herds today.',
+    image: 'n/a',
+    infoSources: [ 
+      'http://www.alpacainfo.com/academy/about-alpacas'
+    ],
+  },
+  {
+    name: 'Angora Goat',
+    origin: 'Asia Minor',
+    status: 'n/a',
+    stapleLength: 'between 12 and 15cm',
+    fleeceWeight: 'approximately 5.3 pounds',
+    fiberDiameter: '',
+    description: 'The Angora goat originated in the district of Angora in Asia Minor. The Angora dates back prior to early biblical history. Mention is made of the use of mohair at the time of Moses, which would fix the record of the Angora some time between 1571 and 1451 B.C., according to the Angora Goat Mohair Industry publication from USDA (Miscellaneous Bulletin 50, 1929). Mohair became a valuable product in commerce early in the nineteenth century. In order to increase the supply of mohair available for export to the European countries, the Turks crossed the Angora goat with common stock to increase the poundage of salable hair. Probably there was no effort to keep the original Angora separate, and the general increase in size and vigor of the goats in the Angora area was, no doubt, partially the result of this infusion of other blood.',
+    image: 'n/a',
+    infoSources: [ 
+    'http://www.ansi.okstate.edu/breeds/goats/angora/index.html/' ],
+  },
   {
     name: 'Bluefaced Leicester',
     origin: 'England',
@@ -14,7 +54,7 @@ let breedList = [
     description: 'The Bluefaced Leicester is of the English Longwool type and originated near Hexham in the county of Northumberland, England, during the early 1900\'s. The breed was originally developed to use in the production of high quality crossbred ewes which were pastured in the neighboring hills of the region. They originated from Border Leicester individuals selected for the blue face (white hairs on black skin) and finer fleeces. They are found primarily in Northern England, Scotland and Wales.',
     image: 'n/a',
     infoSources: [ 
-    'http://www.ansi.okstate.edu/breeds/sheep/bluefacedleicester' ], // preference is to grab OSU's description
+    'http://www.ansi.okstate.edu/breeds/sheep/bluefacedleicester' ],
   },
   {
     name: 'Bond',
@@ -56,7 +96,20 @@ let breedList = [
       'http://www.ansi.okstate.edu/breeds/sheep/californiavariegatedmutant',
       'https://livestockconservancy.org/index.php/heritage/internal/conservation-priority-list#Sheep' 
     ], 
-   },
+  },
+  {
+    name: 'Cashmere Goat',
+    origin: 'Middle East',
+    status: 'n/a',
+    stapleLength: 'at least 1-1/4\' long',
+    fleeceWeight: 'approximately 4 ounces', 
+    fiberDiameter:'less than 19 microns',
+    description: 'A cashmere goat is any breed of goat that produces cashmere wool, the goat\'s fine, soft, downy, winter undercoat, in commercial quality and quantity.[1] This undercoat grows as the day length shortens and is associated with an outer coat of coarse hair, which is present all the year and is called guard hair. Most common goat breeds, including dairy goats, grow this two-coated fleece.',
+    image: 'n/a',
+    infoSources: [
+      'http://www.cashmeregoatassociation.org/cashmere-industry/',
+    ],
+  },
   {
     name: 'Columbia',
     origin: 'USA',
@@ -409,7 +462,22 @@ let breedList = [
       'http://www.ansi.okstate.edu/breeds/sheep/wensleydale',
     ],
   },
+  {
+    name: 'Yak',
+    origin: 'Asia',
+    status: 'n/a',
+    stapleLength: 'roughly 1.5"',
+    fleeceWeight: '7 to 25 ounces',
+    fiberDiameter: 'less than 18 microns',
+    description: 'Domesticated yaks (Bos Grunniens or the grunting ox) are thought to have been domesticated by Qiang herdsmen on the Tibetan (Qinghai) Plateau around 4,500 years ago. The Tibetan culture of the Himalayan Plateau is intertwined with yak just as Native American Plains Indian culture is intertwined with the American Bison. Anthropologists have said that humans could not have colonized and lived on the Tibetan Plateau without assistance from yaks. Because they domesticated yaks, Tibetan plateau peoples were able to use not only their meat, hair, hides and bones but also their milk, and as pack animals.',
+    image: 'n/a',
+    infoSources: [
+      'http://www.iyak.org/main.html',
+    ],
+  },
 ];
+
+
 
 console.log('well, i am here');
 db.Breed.remove({}, function(err, breeds){

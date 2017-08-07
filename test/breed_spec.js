@@ -30,16 +30,16 @@ describe('sheepList', function() {
     expect(myBody).to.be.an('array');
   });
 
-  it('should have 30 items in the array (following a seed)', function(){
-    expect(myBody.length).to.be.eq(30);
+  it('should have 35 items in the array (following a seed)', function(){
+    expect(myBody.length).to.be.eq(35);
   });
 
-  it('should return \'Bluefaced Leicester\' for the first array element', function() {
-    expect(myBody[0]).to.eq('Bluefaced Leicester');
+  it('should return \'Alpaca - huacaya\' for the first array element', function() {
+    expect(myBody[0]).to.eq('Alpaca - huacaya');
   });
 
-  it('should return \'Wensleydale\' for the first array element', function() {
-    expect(myBody[myBody.length - 1]).to.eq('Wensleydale');
+  it('should return \'Yak\' for the last array element', function() {
+    expect(myBody[myBody.length - 1]).to.eq('Yak');
   });
 
 });
