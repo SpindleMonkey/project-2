@@ -66,6 +66,8 @@ Installation is pretty simple: point your browser to *****.
   * EJS
   * Mongo
   * Mongoose
+
+* Testing
   * mocha
   * chai
 
@@ -76,6 +78,19 @@ Installation is pretty simple: point your browser to *****.
 ---
 
 ### approach taken
+
+8/6/17: User can add new items to stash. Unit tests for the breed API have been started.
+User's inventory is shown after login, and is updated when new stash is added. Working through the logic needed to show details for a selected stash item. 
+
+Based on what I have done, and what I still hae to do, I think I'll have to put stash edit and stash delete off to the very end (and if I do get to one of them, delete comes first because you could still 'edit' your stash by deleting an item, and adding the updated item; ugly, but it would be a work-around).
+
+8/5/17: Used Tunely to help me figure out my routes for adding new stash items, but still
+don't have that working.
+
+8/4/17: Auth is working! Also populated the breed collection yesterday; finishing up the breed API today, and starting work on adding to a user's inventory
+
+8/3/17: Starting with auth first; using the Passport class work as a guide. Also want
+to get the breed collection populated today.
 
 8/2/17: I'm trying to be smarter with planning this project. I've drawn the [pages and interactions](assets/newFlow.jpg) I think I'll need.
 
