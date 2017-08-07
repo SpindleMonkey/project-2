@@ -1,6 +1,5 @@
 
-// Require apiKey for Weather Underground
-const env = require('../env.js');
+
 const request = require('request');
 
 const db = require('../models');
@@ -34,8 +33,16 @@ function apiUserWeather(req, res) {
   let state = "CO";
   let qStr = '/q/' + state + '/' + city;
 
-  let myKey = env.name;
-  console.log(myKey);
+  // Require apiKey for Weather Underground
+  let myKey;
+  if (process.env.WUkey) {
+    myKey = process.env.WUkey;
+    //console.log('p.e: ' + myKey);
+  } else {
+    const env = require('../env.js');
+    myKey = env.name;
+    //console.log(myKey);
+  }
 
   let theUrl = 'http://api.wunderground.com/api/' + myKey + '/conditions/' + qStr + '.json';
 
