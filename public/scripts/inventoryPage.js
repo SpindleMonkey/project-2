@@ -188,6 +188,10 @@ $(document).ready(function() {
     //console.log(json);
     // the new stash was added to the end of the inventory
     renderStash(json.inventory[json.inventory.length - 1]);
+
+    // move back to the top of the page after adding new stash since the form
+    // may be longer than the inventory
+    $('html, body').animate({ scrollTop: 0 }, 'fast');
   }
 
   function handleUpdatedUserError(json) {
