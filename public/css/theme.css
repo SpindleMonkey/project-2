@@ -20,3 +20,6 @@ p {
   margin: 30px 0; /* more room top and bottom; default row margins are squishy */
 }
 
+.row .row {
+  margin: 0px -15px;
+}
