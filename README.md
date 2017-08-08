@@ -31,7 +31,7 @@ Inspirations:
 * The Field Guide to Fleece: 100 Sheep Breeds & How to Use Their Fibers by Carol Ekarius and Deborah Robson
 * In Sheep's Clothing by Nola Fournier and Jane Fournier
 * The Spinner's Book of Fleece: A Breed-by-Breed Guide to Choosing and Spinning the Perfect Fiber for Every Purpose by Beth Smith
-* [Ravelry[(http://www.ravelry.com)]
+* [Ravelry](http://www.ravelry.com)
 
 
 ---
