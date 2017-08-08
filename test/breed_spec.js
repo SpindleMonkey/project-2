@@ -87,6 +87,6 @@ describe('sheepDetail', function() {
 
   it('should have a description', function() {
     expect(myBody.breeds[0].description).to.not.be.empty;
-  })
+  });
 
 });

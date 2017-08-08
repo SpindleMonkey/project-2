@@ -9,9 +9,10 @@ const db = require('../models');
  * JSON User API Endpoints
  */
 
+// GET /api/user
 function apiUser(req, res) {
-  console.log('GET /api/user');
-  console.log('req.user: ' + req.user);
+  // console.log('GET /api/user');
+  // console.log('req.user: ' + req.user);
   if (req.user) {
     db.User.find({'_id': req.user._id}, function(err, users) {
       if (err) {
@@ -25,8 +26,9 @@ function apiUser(req, res) {
   }
 }
 
+// GET /api/user/weather
 function apiUserWeather(req, res) {
-  console.log('GET /api/user/weather');
+  //console.log('GET /api/user/weather');
 
   // Left geolocation way too late in the game, so I'm hardcoding the location :(
   let city = "Denver";
@@ -57,26 +59,27 @@ function apiUserWeather(req, res) {
 
 }
 
+// POST /api/user/stash
 function apiNewStash(req, res) {
-  console.log('POST /api/user/stash');
-  console.log('req.user: ' + req.user);
-  console.log('req.body: ' + req.body);
-  console.log('req.body.item: ' + req.body.item);
+  // console.log('POST /api/user/stash');
+  // console.log('req.user: ' + req.user);
+  // console.log('req.body: ' + req.body);
+  // console.log('req.body.item: ' + req.body.item);
   if (req.user) {
-    console.log('there is a user');
+    //console.log('there is a user');
     db.Stash.create(req.body, function(err, newStash) {
-      console.log('call to db.Stash.create was made');
+      //console.log('call to db.Stash.create was made');
       if (err) {
-        console.log('err during create');
-        console.log('err: ' + err);
+        // console.log('err during create');
+        // console.log('err: ' + err);
         res.status(503).send('ERROR::' + err);
       } else {
-        console.log(req.user._id);
-        console.log(newStash);
+        // console.log(req.user._id);
+        // console.log(newStash);
         db.User.update({_id: req.user._id}, { $push: {inventory: newStash} }, function(err, updatedUser) {
           if (err) {
-            console.log('err during update');
-            console.log('err: ' + err);
+            // console.log('err during update');
+            // console.log('err: ' + err);
             res.status(503).send('ERROR::' + err);
           } else {
             res.json(updatedUser);
@@ -94,7 +97,7 @@ function apiNewStash(req, res) {
 
 // GET /api                  documentation
 function apiDoc(req, res) {  
-  console.log('GET /api');
+  //console.log('GET /api');
   res.json({
     message: 'Welcome to the stashy sheep breed list!',
     documentation_url: 'https://github.com/SpindleMonkey/project-2/api.md',
@@ -114,7 +117,7 @@ function apiDoc(req, res) {
 
 // GET /api/breed            list of breeds (names only)
 function apiIndex(req, res) {
-  console.log('GET /api/breed');
+  //console.log('GET /api/breed');
   // return the list of breed names
   db.Breed.find({}, function(err, breeds) {
     if (err) {
@@ -124,6 +127,7 @@ function apiIndex(req, res) {
       breeds.forEach(function(singleBreed) {
         breedNames.push(singleBreed.name);
       });
+
       breedNames.sort();
       res.json(breedNames);
     }
@@ -132,7 +136,7 @@ function apiIndex(req, res) {
 
 // GET /api/breed/all      all the info for all the breeds
 function apiShowAll(req, res) {
-  console.log('GET /api/breed/all');
+  //console.log('GET /api/breed/all');
   // return JSON object of specified breed
   db.Breed.find({}, function(err, allBreeds) {
     if (err) {
@@ -145,7 +149,7 @@ function apiShowAll(req, res) {
 
 // GET /api/breed/:name      lists info for the specified freed
 function apiShow(req, res) {
-  console.log('GET /api/breed/:name');
+  //console.log('GET /api/breed/:name');
   // return JSON object of specified breed
   db.Breed.find({name: req.params.name}, function(err, oneBreed) {
     if (err) {
@@ -158,9 +162,9 @@ function apiShow(req, res) {
 
 // POST /api/breed           add a new breed
 function apiNew(req, res) {
-  console.log('POST /api/breed');
+  //console.log('POST /api/breed');
   // create a new breed in the db
-  console.log(req.body);
+  //console.log(req.body);
   if (!req.body.name) {
     res.status(503).send('cannot add a new breed without a name');
   } else if (!req.body.description) {
@@ -168,7 +172,7 @@ function apiNew(req, res) {
   } else if (!req.body.infoSources) {
     res.status(503).send('cannot add a new breed without any info sources');
   } else {
-    console.log('r.b.i: ' + req.body.infoSources);
+    //console.log('r.b.i: ' + req.body.infoSources);
     let infoList = req.body.infoSources.split(', ');
     //console.log('infoList: ' + infoList);
     //console.log('infoList.length: ' + infoList.length);
@@ -204,13 +208,13 @@ function apiNew(req, res) {
 
 // PUT /api/breed/:name      update a breed
 function apiUpdate(req, res) {
-  console.log('PUT /api/breed/:name');
-  console.log(req.params.name);
-  console.log(req.body);
+  // console.log('PUT /api/breed/:name');
+  // console.log(req.params.name);
+  // console.log(req.body);
 
   // update the specified breed
   db.Breed.find({'name': req.params.name}, function(err, sheep) {
-    console.log(sheep);
+    //console.log(sheep);
     if (err) {
       res.status(404).send('ERROR: breed not found; you probably need to add this breed');
     } else {
@@ -222,10 +226,10 @@ function apiUpdate(req, res) {
         for (let i = 0; i < infoList.length; i++) {
           req.body.infoSources.push(infoList[i]);
         }
-        console.log('srcs: ' + req.body.infoSources);
+        //console.log('srcs: ' + req.body.infoSources);
       }
 
-      console.log(sheep[0]._id);
+      //console.log(sheep[0]._id);
       db.Breed.update({ '_id': sheep[0]._id }, { $set: req.body }, function(err, updatedSheep) {
         if (err) {
           res.status(503).send('ERROR: could not update sheep info');
@@ -240,7 +244,7 @@ function apiUpdate(req, res) {
 
 // DELETE /api/breed/:name   delete breed
 function apiDelete(req, res) {
-  console.log('DELETE /api/breed/:name');
+  //console.log('DELETE /api/breed/:name');
   
   // delete the specified breed
   db.Breed.remove({'name': req.params.name}, function(err, lostSheep) {

@@ -13,7 +13,7 @@ let User = new Schema({
     password: String,    
   },
   inventory: [Stash.schema],
-  favorites: [Stash.schema],
+  favorites: [Stash.schema],  // TODO: not implemented
   avatar: String,
   //breeds: [{type: Schema.Types.ObjectId, ref: 'Breed'}],
   // sources wish list

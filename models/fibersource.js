@@ -2,7 +2,7 @@ let mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
 let FiberSourceSchema = new Schema({
-  business: String, // this entire collection could be a stretch goal
+  business: String, // TODO: this entire collection is a stretch goal
   location: String,
   notes: String
 });

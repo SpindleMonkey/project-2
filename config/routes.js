@@ -8,14 +8,7 @@ let usersController = require('../controllers/users');
 let apisController = require('../controllers/apis');
 
 
-// function authenticatedUser(req, res, next) {
-//   // if the user is authenticated, we continue execution
-//   if (req.isAuthenticated()) return next();
-
-//   // otherwise the request is redirected to the home page
-//   res.redirect('/');
-// }
-
+// static routes
 router.route('/')
   .get(staticsController.home);
 
@@ -24,6 +17,7 @@ router.route('/inventory')
 
 
 
+// users routes
 router.route('/signup')
   .get(usersController.getSignup)
   .post(usersController.postSignup);
@@ -35,11 +29,9 @@ router.route('/login')
 router.route('/logout')
   .get(usersController.getLogout);
 
-// router.route('/secret')
-//   .get(authenticatedUser, usersController.secret);
 
 
-
+// user api routes
 router.route('/api/user')
   .get(apisController.apiUser);
 
@@ -51,6 +43,7 @@ router.route('/api/user/weather')
 
 
 
+// breed api routes
 router.route('/api')
   .get(apisController.apiDoc);
 

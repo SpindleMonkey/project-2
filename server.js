@@ -11,10 +11,10 @@ const session = require('express-session');
 
 app.use(morgan('dev')); 
 app.use(cookieParser());
-//app.use(bodyParser()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// use EJS for pages
 app.set('views', './views');
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');

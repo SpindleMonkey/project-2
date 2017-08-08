@@ -478,8 +478,8 @@ let breedList = [
 ];
 
 
-
-console.log('well, i am here');
+// remove all documents from the current Breed collection 
+// and repopulate with the list of breeds in breedList
 db.Breed.remove({}, function(err, breeds){
   console.log('afterbreed.remove');
   if (err) { return console.log('ERROR::' + err); }

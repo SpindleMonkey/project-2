@@ -50,7 +50,7 @@ module.exports = function(passport) {
         let newUser = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.makeHash(password);
-        newUser.avatar = avatars[getRandom(0, 7)];
+        newUser.avatar = avatars[getRandom(0, 6)];
 
         newUser.save(function(err) {
           if (err) throw err;

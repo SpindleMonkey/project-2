@@ -9,6 +9,7 @@ $(document).ready(function() {
     error: handleError
   });
 
+  // successfully retrieved the current weather from Weather Underground
   function handleSuccess(json) {
     let stringyData = JSON.parse(json);
     // console.log(stringyData);
@@ -20,6 +21,7 @@ $(document).ready(function() {
 
     let spinnerForecast = 'It\'s a good day to spin!';
 
+    // Use the current conditions to give a stashy twist to the weather:
     if (stringyData.current_observation.precip_today_in > 0.5) {
       spinnerForecast = 'You probably don\'t want to put fleece outside to dry today.';
     } else if (stringyData.current_observation.windchill_f != 'NA') {

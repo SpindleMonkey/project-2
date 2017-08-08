@@ -18,8 +18,8 @@ $(document).ready(function() {
     //console.log(stash);
     //console.log(stash.local);
 
-    // build up the HTML needed to display this item from the stash
-    // and include the _id so we can display all the stash info if user wants it
+    // build up the HTML needed to display this item from the stash plus the HTML 
+    // needed to collapse/uncollapse each stash item (uncollapsed shows details of stash)
     let stashHtml = '<button type="button" class="btn btn-primary btn-block active"' +
       ' data-toggle="collapse" data-target="#collapse' + stash._id + 
       '" aria-expanded="false" aria-controls="collapse' + stash._id + '">' +
@@ -44,7 +44,12 @@ $(document).ready(function() {
       ' <strong>Glitz?</strong> ' + stash.glitz + '<br>' +
       ' <strong>Noils?</strong> ' + stash.noils + '<br>' +
       ' <strong>Notes:</strong> ' + stash.notes + '<br>' +
-      // ' <a href="/inventory" class="btn btn-primary active pull-right" role="button">Remove</a><br>' +
+      '<button type="button" class="btn btn-default pull-right" aria-label="remove">' +
+      '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
+      '</button>' +
+      '<button type="button" class="btn btn-default pull-right" aria-label="edit">' +
+      '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+      '</button>' +
       '</div></div>';
 
     //console.log(stashHtml);
@@ -52,6 +57,7 @@ $(document).ready(function() {
     $('.list-group').append(stashHtml);
   }
 
+  // the user object was retrieved successfully, so we have the inventory
   function handleSuccess(json) {
     //console.log('handleSuccess');
     //console.log(json);
@@ -106,6 +112,7 @@ $(document).ready(function() {
     $('#primary').append(breedHtml);
   }
 
+  // successfully retrieved the list of breeds
   function handleGetSheepSuccess(json) {
     //console.log('handleGetSheepSuccess');
     //console.log(json);
@@ -129,6 +136,7 @@ $(document).ready(function() {
     // grab all the data from the form
     let otherFluff = $('#others').val().split(', ');
 
+    // form sets defaults for those fields where something is required
     let newStashItem = {
       item: $('#item').val(),
       primaryFiber: $('#primary').val(),
@@ -144,7 +152,6 @@ $(document).ready(function() {
       notes: $('#notes').val(),
     };
 
-    // let str = JSON.stringify(newStashItem);
     // console.log(str);
 
     $.ajax({
@@ -159,10 +166,10 @@ $(document).ready(function() {
     $(this)[0].reset();
   });
 
+  // new stash was added successfully, now we need the updated user object
   function handlePostSuccess(json) {
     //console.log(json);
     // get the updated user info
-      // get the new album info
     $.ajax({
       method: 'GET',
       url: 'api/user',
@@ -176,6 +183,7 @@ $(document).ready(function() {
     console.log('failed to add stash. sorry.');
   }
 
+  // successfully retrieved the updated user object with the updated inventory
   function handleUpdatedUserSuccess(json) {
     //console.log(json);
     // the new stash was added to the end of the inventory

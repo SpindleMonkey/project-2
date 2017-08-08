@@ -1,18 +1,14 @@
 
-/*@import url('https://fonts.googleapis.com/css?family=Alegreya');
-*/
-
-
 /*****************
  * HTML elements *
  *****************/
 
 body {
-  margin: 20px auto;
+  margin: 20px auto; /* need a little more space top and bottom */
 }
 
 p {
-  margin: 30px auto auto auto;
+  margin: 30px auto auto auto; /* need more room on top so things aren't squishy */
 }
 
 
@@ -21,5 +17,6 @@ p {
  *****************/
 
 .row {
-  margin: 30px 0; }
+  margin: 30px 0; /* more room top and bottom; default row margins are squishy */
+}
 
