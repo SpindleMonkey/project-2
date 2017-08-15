@@ -38,6 +38,9 @@ router.route('/api/user')
 router.route('/api/user/stash')
   .post(apisController.apiNewStash);
 
+router.route('/api/user/stash/:id')
+  .delete(apisController.apiDeleteStashItem);
+
 router.route('/api/user/weather')
   .get(apisController.apiUserWeather);
 

@@ -90,6 +90,28 @@ function apiNewStash(req, res) {
   }
 }
 
+// DELETE /api/user/stash/:id
+function apiDeleteStashItem(req, res) {
+  console.log('req.params.id: ' + req.params.id);
+  console.log('req.user._id: ' + req.user._id);
+  db.Stash.remove({_id: req.params.id}, function(err, lostStash) {
+    if (err) {
+       res.status(404).send('could not remove that from the stash');
+    } else {
+      // now we need to remove it from the user's inventory
+      db.User.findByIdAndUpdate({ _id: req.user._id },
+        { $pull: { inventory: { _id: req.params.id } } }, function(err, updatedUser) {
+          if (err) {
+            res.status(404).send('could not remove that item from the inventory');
+          } else {
+            console.log(res);
+            res.json(updatedUser);
+          }
+        });
+    }
+  });
+}
+
 
 /*
  * JSON Breed API Endpoints
@@ -260,6 +282,7 @@ function apiDelete(req, res) {
 module.exports = {
   apiUser: apiUser,
   apiNewStash: apiNewStash,
+  apiDeleteStashItem: apiDeleteStashItem,
   apiUserWeather: apiUserWeather,
   apiDoc: apiDoc,
   apiIndex: apiIndex,
