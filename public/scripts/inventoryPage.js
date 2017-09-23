@@ -211,7 +211,7 @@ $(document).ready(function() {
     //console.log($(this).data('id'));
 
     let theUrl = '/api/user/stash/' + $(this).data('id');
-    /console.log(theUrl);
+    //console.log(theUrl);
 
     $.ajax({
       method: 'DELETE',
